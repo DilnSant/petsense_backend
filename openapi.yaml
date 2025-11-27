@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: PetSense API
+  version: 1.0.0
+  description: Backend API for PetSense application
+servers:
+  - url: http://localhost:3000
+    description: Local Development Server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                name:
+                  type: string
+                role:
+                  type: string
+                  enum: [USER, PROVIDER]
+      responses:
+        201:
+          description: User registered
+  /auth/login:
+    post:
+      summary: Login user
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Login successful
+  /providers:
+    get:
+      summary: List providers (with geo search)
+      tags: [Providers]
+      parameters:
+        - in: query
+          name: lat
+          schema:
+            type: number
+        - in: query
+          name: lng
+          schema:
+            type: number
+        - in: query
+          name: radius
+          schema:
+            type: number
+      responses:
+        200:
+          description: List of providers
+    post:
+      summary: Create a provider profile
+      tags: [Providers]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                name:
+                  type: string
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+      responses:
+        201:
+          description: Provider created
+  /services:
+    get:
+      summary: List services for a provider
+      tags: [Services]
+      parameters:
+        - in: query
+          name: providerId
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: List of services
+  /files/upload:
+    post:
+      summary: Upload a file
+      tags: [Upload]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        201:
+          description: File uploaded
