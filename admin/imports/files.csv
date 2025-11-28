@@ -1,0 +1,2 @@
+id,filename,originalName,mimeType,size,url,bucket,key,createdAt
+uuid-file-1,img1.jpg,img1.jpg,image/jpeg,12345,http://url,img-bucket,img1.jpg,2025-01-06T10:00:00.000Z

@@ -1,0 +1,2 @@
+id,providerId,name,description,price,durationMin,createdAt,updatedAt
+uuid-svc-1,uuid-prov-1,Banho,Banho completo,49.90,60,2025-01-02T12:00:00.000Z,2025-01-02T12:00:00.000Z

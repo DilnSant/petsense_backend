@@ -1,0 +1,2 @@
+id,userId,name,phone,address,avatarUrl,createdAt,updatedAt
+uuid-profile-1,uuid-user-1,Dilney,+5548999999999,Rua XPTO,http://url-da-foto,2025-01-01T10:00:00.000Z,2025-01-01T10:00:00.000Z

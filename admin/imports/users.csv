@@ -1,0 +1,2 @@
+id,email,password,role,createdAt,updatedAt
+uuid-user-1,admin@petsense.com,$2a$10$hashAqui,ADMIN,2025-01-01T10:00:00.000Z,2025-01-01T10:00:00.000Z

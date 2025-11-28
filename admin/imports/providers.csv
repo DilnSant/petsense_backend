@@ -1,0 +1,2 @@
+id,userId,type,name,description,phone,address,latitude,longitude,rating,reviewCount,isVerified,createdAt,updatedAt
+uuid-prov-1,uuid-user-2,PETSHOP,Happy Pet Shop,Pet shop completo,+5548999988888,Rua ABC,0,0,5,10,true,2025-01-02T12:00:00.000Z,2025-01-02T12:00:00.000Z

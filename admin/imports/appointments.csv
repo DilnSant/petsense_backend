@@ -1,0 +1,2 @@
+id,userId,providerId,serviceId,date,status,notes,createdAt,updatedAt
+uuid-app-1,uuid-user-1,uuid-prov-1,uuid-svc-1,2025-01-05T15:00:00.000Z,CONFIRMED,Sem observações,2025-01-05T14:00:00.000Z,2025-01-05T14:00:00.000Z

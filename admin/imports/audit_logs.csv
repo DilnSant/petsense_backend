@@ -1,0 +1,2 @@
+id,userId,action,resource,resourceId,details,ipAddress,createdAt
+uuid-log-1,uuid-user-1,LOGIN,User,uuid-user-1,{"ok":true},127.0.0.1,2025-01-08T10:00:00.000Z

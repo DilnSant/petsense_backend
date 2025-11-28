@@ -38,6 +38,7 @@ model User {
 
   profile      Profile?
   provider     Provider?
+  pets         Pet[]
   favorites    Favorite[]
   reviews      Review[]
   appointments Appointment[]
@@ -65,13 +66,11 @@ model Provider {
   description String?
   phone       String?
   address     String?
-  
-  // Unsupported type for PostGIS geometry. 
-  // We will manage this column via raw SQL migrations for indexing and querying.
   location    Unsupported("geometry(Point, 4326)")?
-  
   latitude    Float?
   longitude   Float?
+
+  logoUrl     String?      // NOVO CAMPO
 
   rating      Float        @default(0)
   reviewCount Int          @default(0)
@@ -83,8 +82,7 @@ model Provider {
   services     Service[]
   appointments Appointment[]
   reviews      Review[]
-  
-  @@index([type])
+  favorites    Favorite[]
 }
 
 model Service {
@@ -94,11 +92,27 @@ model Service {
   description String?
   price       Decimal  @db.Decimal(10, 2)
   durationMin Int?
+
+  imageUrl    String?   // NOVO CAMPO
+
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   provider     Provider      @relation(fields: [providerId], references: [id], onDelete: Cascade)
   appointments Appointment[]
+}
+
+model Pet {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  species   String?
+  breed     String?
+  age       Int?
+  photoUrl  String?   // NOVO CAMPO
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Favorite {
@@ -154,7 +168,7 @@ model File {
 model Import {
   id          String   @id @default(uuid())
   filename    String
-  status      String   // PENDING, PROCESSING, COMPLETED, FAILED
+  status      String
   totalRows   Int      @default(0)
   processedRows Int    @default(0)
   successCount Int     @default(0)
